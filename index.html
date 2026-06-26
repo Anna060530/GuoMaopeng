@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>極東數位木作工程 — 郭懋鵬</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;900&family=Cinzel:wght@500;700&display=swap');
@@ -55,24 +55,6 @@ nav {
 .nav-cta { padding: 12px 28px; background: transparent; border: 1px solid var(--amber); color: var(--amber); font-size: 0.85rem; letter-spacing: 0.1em; text-decoration: none; border-radius: 4px; transition: all 0.3s; font-weight: 500; }
 .nav-cta:hover { background: var(--amber); color: #fff; box-shadow: 0 4px 15px rgba(230,126,34,0.3); }
 
-/* 行動版漢堡排按鈕 */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 24px;
-  height: 18px;
-  cursor: pointer;
-  z-index: 210;
-}
-.menu-toggle span {
-  display: block;
-  height: 2px;
-  width: 100%;
-  background-color: var(--gold);
-  transition: all 0.3s ease;
-}
-
 /* ─── HERO SECTION ─── */
 .hero {
   min-height: 100vh; display: grid; grid-template-columns: 1.2fr 1fr; align-items: center;
@@ -87,11 +69,11 @@ nav {
 }
 .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); animation: blink 2s infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-.hero-h1 { font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: clamp(2.5rem, 5vw, 4.8rem); line-height: 1.2; color: var(--cream); margin-bottom: 24px; }
+.hero-h1 { font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: clamp(2.8rem, 5vw, 4.8rem); line-height: 1.2; color: var(--cream); margin-bottom: 24px; }
 .hero-h1 em { color: var(--gold); font-style: normal; position: relative; }
 .hero-desc { font-size: 1rem; line-height: 1.8; color: var(--muted); max-width: 520px; margin-bottom: 40px; }
 .hero-actions { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
-.btn-prim { display: inline-block; padding: 16px 38px; background: var(--amber); color: #fff; font-size: 0.9rem; letter-spacing: 0.15em; text-decoration: none; border-radius: 4px; font-weight: 500; transition: all 0.3s; text-align: center; }
+.btn-prim { display: inline-block; padding: 16px 38px; background: var(--amber); color: #fff; font-size: 0.9rem; letter-spacing: 0.15em; text-decoration: none; border-radius: 4px; font-weight: 500; transition: all 0.3s; }
 .btn-prim:hover { background: #f39c12; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(230,126,34,0.4); }
 .btn-ghost { display: inline-flex; align-items: center; gap: 8px; color: var(--gold); font-size: 0.9rem; letter-spacing: 0.1em; text-decoration: none; transition: all 0.3s; font-weight: 500; }
 .btn-ghost:hover { color: var(--gold-light); transform: translateX(5px); }
@@ -113,8 +95,12 @@ nav {
 @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
 /* ─── SERVICES ─── */
-.services { padding: 140px 5%; background: var(--bg); }
-.svc-intro { margin-bottom: 60px; max-width: 700px; }
+.services { padding: 140px 5%; background: var(--bg); display: grid; grid-template-columns: 1fr; gap: 40px; }
+@media (min-width: 1024px) {
+  .services { grid-template-columns: 320px 1fr; gap: 60px; align-items: start; }
+  .svc-intro { margin-bottom: 0; position: sticky; top: 120px; }
+}
+.svc-intro { max-width: 700px; }
 .svc-sub { font-size: 1rem; line-height: 1.8; color: var(--muted); margin-top: 20px; }
 .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 .svc-card { background: var(--panel); border: 1px solid var(--panel-brd); border-radius: 8px; overflow: hidden; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); position: relative; }
@@ -147,7 +133,7 @@ nav {
 .gallery-hd { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
 .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .gi { overflow: hidden; position: relative; border-radius: 6px; height: 280px; background: #151515; border: 1px solid rgba(255,255,255,0.03); }
-.gi:nth-child(5n+1) { grid-column: span 2; }
+/* 變更為圖四乾淨整齊網格版型 */
 .gi img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5) grayscale(0.3); transition: all 0.5s ease; }
 .gi:hover img { transform: scale(1.05); filter: brightness(0.9) grayscale(0); }
 .gi-ov { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; }
@@ -182,13 +168,16 @@ nav {
 .contact-info { display: flex; flex-direction: column; justify-content: space-between; }
 .contact-title { font-family: 'Noto Serif TC', serif; font-size: 2.5rem; font-weight: 900; color: var(--cream); margin-bottom: 16px; }
 .contact-desc { font-size: 0.95rem; line-height: 1.8; color: var(--muted); margin-bottom: 40px; }
-.info-list { background: var(--panel); border: 1px solid var(--panel-brd); border-radius: 8px; padding: 10px 30px; }
-.c-row { display: flex; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 22px 0; align-items: center; }
-.c-row:last-child { border-bottom: none; }
-.c-label { font-size: 0.8rem; letter-spacing: 0.15em; color: var(--amber); min-width: 100px; font-weight: 700; }
-.c-val { font-size: 0.95rem; color: var(--cream); }
-.c-val a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
-.c-val a:hover { color: var(--gold-light); text-decoration: underline; }
+.info-cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 30px; }
+.info-card { background: var(--panel); border: 1px solid var(--panel-brd); border-radius: 8px; padding: 22px; display: flex; gap: 14px; align-items: flex-start; transition: all 0.3s; }
+.info-card:hover { border-color: rgba(212,175,55,0.4); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+.info-card-icon { background: rgba(230,126,34,0.1); padding: 10px; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+.info-card-content { display: flex; flex-direction: column; gap: 6px; }
+.info-card-label { font-size: 0.75rem; color: var(--amber); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.info-card-val { font-size: 0.92rem; color: var(--cream); line-height: 1.5; }
+.info-card-val a { color: var(--gold); text-decoration: none; transition: all 0.3s; }
+.info-card-val a:hover { color: var(--gold-light); text-decoration: underline; }
+@media (max-width: 576px) { .info-cards-grid { grid-template-columns: 1fr; } }
 
 .form-box-wrapper { background: #111; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
 .form-wrap { display: flex; flex-direction: column; gap: 16px; }
@@ -224,9 +213,9 @@ footer { padding: 60px 5%; background: #050505; border-top: 1px solid rgba(255,2
 .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1); }
 .reveal.in { opacity: 1; transform: none; }
 
-/* ─── 全面優化：RESPONSIVE 響應式手機斷點 ─── */
+/* ─── RESPONSIVE ─── */
 @media (max-width: 1200px) {
-  .hero { grid-template-columns: 1fr; text-align: center; padding-top: 140px; gap: 50px; }
+  .hero { grid-template-columns: 1fr; text-align: center; padding-top: 140px; gap: 60px; }
   .hero-desc { margin: 0 auto 40px; }
   .hero-actions { justify-content: center; }
   .hero-visual { min-height: 400px; justify-content: center; }
@@ -234,7 +223,7 @@ footer { padding: 60px 5%; background: #050505; border-top: 1px solid rgba(255,2
   .hero-stats { left: 50%; transform: translateX(-50%); bottom: -30px; }
   .svc-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery-grid { grid-template-columns: repeat(3, 1fr); }
-  .gi:nth-child(5n+1) { grid-column: auto; }
+  
 }
 
 @media (max-width: 992px) {
@@ -247,65 +236,14 @@ footer { padding: 60px 5%; background: #050505; border-top: 1px solid rgba(255,2
 }
 
 @media (max-width: 768px) {
-  /* 導覽列優化與滿版選單 */
-  nav { padding: 0 24px; position: fixed; }
-  .menu-toggle { display: flex; }
-  
-  .nav-links {
-    position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
-    background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(25px);
-    flex-direction: column; justify-content: center; align-items: center;
-    gap: 32px; transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    border-left: 1px solid var(--panel-brd); box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-  }
-  .nav-links.active { right: 0; }
-  .nav-links a { font-size: 1.1rem; color: #fff; }
-  .nav-cta { display: none; } /* 行動版隱藏頂部單個按鈕，改由選單內或封面引導 */
-
-  /* 漢堡按鈕動態動畫 */
-  .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-  .menu-toggle.active span:nth-child(2) { opacity: 0; }
-  .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-  /* 核心區塊 Padding 調校 */
-  .services, .gallery, .flow, .contact, .cta-strip { padding: 80px 20px; }
-  
-  /* 封面設計 (Hero) 精準對齊優化 */
-  .hero { padding: 130px 20px 40px; gap: 30px; }
-  .hero-badge { margin-bottom: 16px; }
-  .hero-h1 { font-size: 2.2rem; line-height: 1.3; letter-spacing: 0.02em; }
-  .hero-desc { font-size: 0.95rem; margin-bottom: 32px; text-align: justify; color: #aaa; }
-  .hero-actions { flex-direction: column; width: 100%; gap: 12px; }
-  .hero-actions .btn-prim { width: 100%; padding: 15px; font-size: 0.95rem; }
-  .hero-actions .btn-ghost { width: 100%; justify-content: center; padding: 10px; }
-  
-  /* 封面右側視覺與數據卡優化 */
-  .hero-visual { min-height: 320px; margin-top: 20px; }
-  .hero-bg-box { width: 100%; height: 280px; border-radius: 8px; }
-  .hero-stats { width: 95%; padding: 20px 15px; gap: 0; bottom: -20px; justify-content: space-around; }
-  .stat-num { font-size: 1.8rem; }
-  .stat-label { font-size: 0.7rem; }
-
-  /* 核心服務與合作流程排版 */
-  .flow-hd, .gallery-hd { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .svc-grid, .flow-steps { grid-template-columns: 1fr; gap: 24px; }
-  .svc-body { padding: 25px 20px; }
-  .flow-step { text-align: center; display: flex; flex-direction: column; align-items: center; }
-  .step-dot { margin-bottom: 16px; }
-
-  /* 作品案例 (Gallery) 完美改為高質感雙欄網格 */
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .gi { height: 160px; border-radius: 4px; }
-  .gi:nth-child(5n+1) { grid-column: auto; }
-
-  /* 聯絡表單 (比照參考圖的高質感暗色美學) */
-  .form-box-wrapper { padding: 30px 20px; border-radius: 8px; }
-  .form-row { grid-template-columns: 1fr; gap: 16px; }
-  .field { padding: 15px 18px; font-size: 0.95rem; }
-  .form-submit { padding: 16px; font-size: 1rem; }
-
-  /* 頁尾平衡置中 */
-  footer { padding: 40px 20px; flex-direction: column; text-align: center; gap: 24px; }
+  nav { padding: 0 24px; }
+  .nav-links, .nav-cta { display: none; }
+  .services, .gallery, .flow, .contact, .cta-strip { padding: 90px 24px; }
+  .flow-hd, .gallery-hd { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .svc-grid, .gallery-grid, .flow-steps { grid-template-columns: 1fr; }
+  .form-box-wrapper { padding: 30px 20px; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { padding: 40px 24px; flex-direction: column; text-align: center; gap: 20px; }
   .footer-links { flex-direction: column; gap: 16px; align-items: center; }
 }
 </style>
@@ -322,20 +260,7 @@ footer { padding: 60px 5%; background: #050505; border-top: 1px solid rgba(255,2
     </svg>
     <span class="logo-text">極東數位木作工程</span>
   </a>
-  
-  <div class="menu-toggle" id="menuToggleBtn">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
 
-  <ul class="nav-links" id="navLinksMenu">
-    <li><a href="#services">服務項目</a></li>
-    <li><a href="#gallery">作品案例</a></li>
-    <li><a href="#flow">合作流程</a></li>
-    <li><a href="#contact">聯絡</a></li>
-  </ul>
-  <a href="#contact" class="nav-cta">免費估價</a>
 </nav>
 
 <section class="hero">
@@ -518,13 +443,43 @@ footer { padding: 60px 5%; background: #050505; border-top: 1px solid rgba(255,2
       <h2 class="contact-title">開始合作</h2>
       <p class="contact-desc">歡迎全台各地木工師傅、室內設計師及工程團隊洽詢，線上即時報價，快速安排製程。</p>
     </div>
-    <div class="info-list">
-      <div class="c-row"><span class="c-label">聯絡人</span><span class="c-val">郭懋鵬</span></div>
-      <div class="c-row"><span class="c-label">品牌</span><span class="c-val">極東數位木作工程</span></div>
-      <div class="c-row"><span class="c-label">手機</span><span class="c-val"><a href="tel:0908-236-090">0908-236-090</a></span></div>
-      <div class="c-row"><span class="c-label">LINE ID</span><span class="c-val"><a href="https://line.me/ti/p/QdtaXIETEr" target="_blank">0908236090</a></span></div>
-      <div class="c-row"><span class="c-label">電話</span><span class="c-val"><a href="tel:0226683290">02-2668-3290</a></span></div>
-      <div class="c-row"><span class="c-label">廠址</span><span class="c-val"><a href="https://maps.app.goo.gl/QTj6YgSPETdEgq3y9" target="_blank">新北市樹林區西圳街一段116巷8號</a></span></div>
+    <div class="info-cards-grid">
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </div>
+        <div class="info-card-content">
+          <span class="info-card-label">聯絡人 / 品牌</span>
+          <span class="info-card-val">郭懋鵬 × 極東數位木作</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </div>
+        <div class="info-card-content">
+          <span class="info-card-label">聯絡電話</span>
+          <span class="info-card-val"><a href="tel:0908-236-090">0908-236-090</a><br><a href="tel:0226683290">02-2668-3290</a></span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        </div>
+        <div class="info-card-content">
+          <span class="info-card-label">LINE ID</span>
+          <span class="info-card-val"><a href="https://line.me/ti/p/QdtaXIETEr" target="_blank">0908236090</a></span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        </div>
+        <div class="info-card-content">
+          <span class="info-card-label">工廠地址</span>
+          <span class="info-card-val"><a href="https://maps.app.goo.gl/QTj6YgSPETdEgq3y9" target="_blank">新北市樹林區西圳街一段116巷8號</a></span>
+        </div>
+      </div>
     </div>
   </div>
   <div class="reveal" style="transition-delay: 0.15s">
@@ -569,23 +524,6 @@ footer { padding: 60px 5%; background: #050505; border-top: 1px solid rgba(255,2
 </footer>
 
 <script>
-// 漢堡排選單開合控制 JS
-const menuToggleBtn = document.getElementById('menuToggleBtn');
-const navLinksMenu = document.getElementById('navLinksMenu');
-
-menuToggleBtn.addEventListener('click', () => {
-  menuToggleBtn.classList.toggle('active');
-  navLinksMenu.classList.toggle('active');
-});
-
-// 點擊選單項目後自動關閉選單
-document.querySelectorAll('#navLinksMenu a').forEach(link => {
-  link.addEventListener('click', () => {
-    menuToggleBtn.classList.remove('active');
-    navLinksMenu.classList.remove('active');
-  });
-});
-
 // Scroll reveal — 滾動動態
 (function() {
   const obs = new IntersectionObserver(
