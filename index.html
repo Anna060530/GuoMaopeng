@@ -5,328 +5,564 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>極東數位木作工程 — 郭懋鵬</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg:      #0D0E10;
-  --dark:    #161A1E;
-  --mid:     #1E2428;
-  --silver:  #A8B4BE;
-  --silver-lt: #D4DCE4;
-  --cream:   #E8EDF2;
-  --muted:   #6A7A86;
-  --accent:  #7A9BAE;
-  --accent2: #9BBCCE;
-  --stone:   #3A4852;
-}
-html { scroll-behavior: smooth; }
-body { font-family: 'Noto Sans TC', Arial, sans-serif; background: var(--bg); color: var(--cream); overflow-x: hidden; }
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { background: var(--stone); border-radius: 2px; }
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;900&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
 
-/* ─── NAV ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #080808;
+  --bg2:      #0F0F0F;
+  --surface:  #141414;
+  --surface2: #1C1C1C;
+  --gold:     #C9A96E;
+  --gold-lt:  #E8D5A3;
+  --gold-dk:  #8B6F3E;
+  --cream:    #F0EDE8;
+  --muted:    #5A5A5A;
+  --silver:   #9A9A9A;
+  --border:   rgba(201,169,110,0.18);
+  --border2:  rgba(201,169,110,0.08);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  overflow-x: hidden;
+  font-weight: 300;
+}
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-thumb { background: var(--gold-dk); }
+
+/* ── GOLD LINE SIGNATURE ── */
+.gold-rule {
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  flex-shrink: 0;
+}
+.gold-rule-h {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
+}
+
+/* ── NAV ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 56px; height: 68px;
-  background: rgba(13,14,16,0.95);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(168,180,190,0.1);
+  padding: 0 64px; height: 72px;
+  background: rgba(8,8,8,0.96);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border2);
 }
-.logo-wrap { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.logo-text { font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 1.05rem; color: var(--silver-lt); letter-spacing: 0.1em; white-space: nowrap; }
-.nav-links { display: flex; gap: 36px; list-style: none; margin: 0 auto; }
-.nav-links a { font-size: 0.78rem; letter-spacing: 0.18em; color: rgba(232,237,242,0.5); text-decoration: none; white-space: nowrap; transition: color 0.2s; }
-.nav-links a:hover { color: var(--silver-lt); }
-.nav-cta { padding: 10px 28px; background: var(--stone); color: var(--cream); font-size: 0.78rem; letter-spacing: 0.16em; text-decoration: none; white-space: nowrap; border-radius: 2px; transition: background 0.2s; flex-shrink: 0; border: 1px solid rgba(168,180,190,0.25); }
-.nav-cta:hover { background: var(--accent); border-color: var(--accent); }
+.logo-wrap { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.logo-icon {
+  width: 28px; height: 28px; flex-shrink: 0;
+  border: 1px solid var(--gold-dk);
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-text {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 0.88rem; font-weight: 600;
+  color: var(--cream); letter-spacing: 0.22em;
+}
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a {
+  font-size: 0.7rem; letter-spacing: 0.28em;
+  color: var(--silver); text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold-lt); }
+.nav-cta {
+  font-size: 0.68rem; letter-spacing: 0.28em;
+  color: var(--gold); text-decoration: none;
+  border: 1px solid var(--gold-dk);
+  padding: 9px 24px;
+  transition: background 0.3s, color 0.3s;
+}
+.nav-cta:hover { background: var(--gold); color: var(--bg); }
 
-/* ─── HERO ─── */
+/* ── HERO ── */
 .hero {
   min-height: 100vh;
-  display: flex; align-items: flex-end;
+  display: grid; grid-template-columns: 1fr 1fr;
   position: relative; overflow: hidden;
 }
-.hero-bg {
-  position: absolute; inset: 0;
-  background:
-    url('https://i.ibb.co/zVWkCsP6/S-28549161-0.jpg') center/cover no-repeat,
-    repeating-linear-gradient(12deg, transparent, transparent 3px, rgba(168,180,190,0.03) 3px, rgba(168,180,190,0.03) 6px),
-    linear-gradient(160deg, #0a0c0e 0%, #141a20 40%, #0d0e10 100%);
-}
-.hero-bg::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(13,14,16,0.94) 0%, rgba(18,22,26,0.72) 55%, rgba(13,14,16,0.62) 100%);
-}
-.hero-content {
+.hero-left {
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 72px 96px;
   position: relative; z-index: 2;
-  padding: 0 80px 96px;
-  max-width: 700px;
 }
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 10px;
-  border: 1px solid rgba(168,180,190,0.3);
-  padding: 8px 20px; margin-bottom: 36px;
-  font-size: 0.72rem; letter-spacing: 0.3em; color: var(--silver);
+.hero-right {
+  position: relative; overflow: hidden;
 }
-.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; animation: blink 2s ease infinite; }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.35} }
-.hero-h1 {
-  font-family: 'Noto Serif TC', serif; font-weight: 900;
-  font-size: clamp(3rem, 6vw, 5.4rem);
-  line-height: 1.1; color: var(--cream); margin-bottom: 28px;
+.hero-right img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.55) saturate(0.4);
+  display: block;
 }
-.hero-h1 em { color: var(--silver-lt); font-style: normal; }
-.hero-desc {
-  font-size: 0.94rem; line-height: 2;
-  color: rgba(232,237,242,0.55);
-  max-width: 460px; margin-bottom: 52px;
+.hero-right::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(90deg, var(--bg) 0%, transparent 40%);
 }
-.hero-actions { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
-.btn-prim {
-  display: inline-block; padding: 16px 44px;
-  background: var(--stone); color: var(--cream);
-  font-size: 0.84rem; letter-spacing: 0.2em; text-decoration: none;
-  border-radius: 2px; transition: background 0.2s, transform 0.2s;
-  border: 1px solid rgba(168,180,190,0.3);
+.hero-right::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0; left: 0; width: 1px; z-index: 2;
+  background: linear-gradient(to bottom, transparent 10%, var(--gold) 50%, transparent 90%);
 }
-.btn-prim:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
-.btn-ghost {
-  display: inline-flex; align-items: center; gap: 10px;
-  color: var(--silver); font-size: 0.82rem; letter-spacing: 0.14em; text-decoration: none;
-  transition: gap 0.2s;
-}
-.btn-ghost:hover { gap: 16px; color: var(--silver-lt); }
-.hero-stats {
-  position: absolute; right: 80px; bottom: 96px; z-index: 2;
-  display: flex; gap: 52px;
-}
-.stat-num { font-family: 'Noto Serif TC', serif; font-size: 2.8rem; font-weight: 900; color: var(--silver-lt); line-height: 1; }
-.stat-suf { font-size: 1.4rem; color: var(--accent); }
-.stat-label { font-size: 0.75rem; letter-spacing: 0.2em; color: rgba(232,237,242,0.38); margin-top: 6px; }
 
-/* ─── MARQUEE ─── */
-.marquee-wrap { background: var(--stone); overflow: hidden; padding: 14px 0; }
-.marquee-track { display: flex; animation: marquee 26s linear infinite; white-space: nowrap; }
-.marquee-item { display: inline-flex; align-items: center; gap: 24px; padding: 0 36px; font-size: 0.73rem; letter-spacing: 0.26em; color: rgba(232,237,242,0.75); }
-.marquee-item::after { content: '×'; opacity: 0.4; }
+/* Pre-head serial */
+.hero-serial {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.68rem; letter-spacing: 0.5em;
+  color: var(--gold); margin-bottom: 40px;
+  display: flex; align-items: center; gap: 16px;
+}
+.hero-serial::before {
+  content: '';
+  width: 40px; height: 1px; background: var(--gold);
+}
+
+.hero-h1 {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 900;
+  font-size: clamp(3.2rem, 5.5vw, 5.6rem);
+  line-height: 1.06;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  margin-bottom: 36px;
+}
+.hero-h1 em {
+  font-style: normal;
+  color: var(--gold-lt);
+  display: block;
+}
+.hero-h1 small {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.38em;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: var(--silver);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.hero-desc {
+  font-size: 0.85rem; line-height: 2.1;
+  color: var(--silver);
+  max-width: 400px;
+  margin-bottom: 60px;
+  font-weight: 300;
+}
+
+.hero-actions { display: flex; gap: 24px; align-items: center; }
+.btn-gold {
+  display: inline-block;
+  padding: 14px 40px;
+  background: var(--gold);
+  color: var(--bg);
+  font-size: 0.72rem; letter-spacing: 0.28em;
+  text-decoration: none; font-weight: 500;
+  transition: background 0.3s, transform 0.2s;
+}
+.btn-gold:hover { background: var(--gold-lt); transform: translateY(-1px); }
+.btn-line {
+  display: inline-flex; align-items: center; gap: 12px;
+  color: var(--silver); font-size: 0.7rem; letter-spacing: 0.22em;
+  text-decoration: none;
+  transition: color 0.3s, gap 0.3s;
+}
+.btn-line:hover { color: var(--gold-lt); gap: 18px; }
+
+/* Hero stats — bottom right over image */
+.hero-stats {
+  position: absolute; bottom: 72px; right: 72px; z-index: 3;
+  display: flex; flex-direction: column; gap: 32px; align-items: flex-end;
+}
+.hstat { text-align: right; }
+.hstat-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.4rem; font-weight: 300; line-height: 1;
+  color: var(--gold-lt);
+}
+.hstat-n sup { font-size: 1.2rem; margin-left: 4px; color: var(--gold); }
+.hstat-l {
+  font-size: 0.62rem; letter-spacing: 0.3em;
+  color: rgba(240,237,232,0.35); margin-top: 4px;
+}
+
+/* ── MARQUEE ── */
+.marquee-wrap {
+  border-top: 1px solid var(--border2);
+  border-bottom: 1px solid var(--border2);
+  overflow: hidden; padding: 15px 0;
+  background: var(--bg2);
+}
+.marquee-track { display: flex; animation: marquee 32s linear infinite; white-space: nowrap; }
+.marquee-item {
+  display: inline-flex; align-items: center; gap: 20px;
+  padding: 0 40px; font-size: 0.62rem; letter-spacing: 0.4em;
+  color: var(--muted); text-transform: uppercase;
+}
+.marquee-item::after { content: '◆'; color: var(--gold-dk); font-size: 0.45rem; }
 @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
-/* ─── EYEBROW & TITLE ─── */
+/* ── SHARED ── */
 .eyebrow {
-  display: inline-flex; align-items: center; gap: 14px;
-  font-size: 0.7rem; letter-spacing: 0.36em; color: var(--accent);
-  text-transform: uppercase; margin-bottom: 18px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.72rem; letter-spacing: 0.5em;
+  color: var(--gold); text-transform: uppercase;
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 24px;
 }
-.eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--accent); flex-shrink: 0; }
+.eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gold); flex-shrink: 0; }
+
 .sec-title {
   font-family: 'Noto Serif TC', serif;
-  font-size: clamp(1.9rem, 3.5vw, 2.9rem);
-  font-weight: 900; color: var(--cream); line-height: 1.25;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 900; color: var(--cream); line-height: 1.2;
 }
-.sec-title span { color: var(--silver-lt); }
+.sec-title span { color: var(--gold-lt); }
 
-/* ─── SERVICES ─── */
-.services { padding: 120px 80px; background: var(--bg); }
-.svc-intro { margin-bottom: 72px; max-width: 580px; }
-.svc-sub { font-size: 0.9rem; line-height: 1.95; color: var(--muted); margin-top: 22px; }
-.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+/* ── SERVICES ── */
+.services { padding: 140px 64px; background: var(--bg); }
+.svc-intro { margin-bottom: 80px; max-width: 600px; }
+.svc-sub { font-size: 0.85rem; line-height: 2.1; color: var(--muted); margin-top: 24px; font-weight: 300; }
+
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border2); }
 .svc-card {
-  background: var(--dark);
+  background: var(--bg);
   position: relative; overflow: hidden;
-  cursor: default; transition: transform 0.35s;
+  transition: background 0.4s;
 }
-.svc-card:hover { transform: translateY(-6px); z-index: 2; }
-.svc-img-wrap { position: relative; height: 270px; overflow: hidden; background: var(--mid); }
+.svc-card:hover { background: var(--surface); }
+
+.svc-img-wrap { height: 260px; overflow: hidden; position: relative; }
 .svc-img-wrap img {
   width: 100%; height: 100%; object-fit: cover; display: block;
-  filter: brightness(0.65) saturate(0.5) hue-rotate(180deg);
-  transition: filter 0.4s, transform 0.5s;
+  filter: brightness(0.5) saturate(0.3) sepia(0.2);
+  transition: filter 0.6s, transform 0.7s ease;
 }
-.svc-card:hover .svc-img-wrap img { filter: brightness(0.82) saturate(0.75); transform: scale(1.06); }
-.svc-body { padding: 36px 32px 44px; }
-.svc-num { font-size: 0.65rem; letter-spacing: 0.32em; color: var(--accent); margin-bottom: 14px; }
-.svc-name { font-family: 'Noto Serif TC', serif; font-size: 1.25rem; font-weight: 600; color: var(--silver-lt); margin-bottom: 14px; }
-.svc-desc { font-size: 0.82rem; line-height: 1.95; color: rgba(232,237,242,0.46); }
-.svc-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--silver)); transform: scaleX(0); transform-origin: left; transition: transform 0.35s; }
-.svc-card:hover .svc-bar { transform: scaleX(1); }
+.svc-card:hover .svc-img-wrap img { filter: brightness(0.65) saturate(0.5) sepia(0.15); transform: scale(1.05); }
 
-/* ─── FEATURE ─── */
-.feature { display: grid; grid-template-columns: 1fr 1fr; min-height: 560px; }
-.feat-img { position: relative; overflow: hidden; background: var(--mid); }
-.feat-img img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.72) saturate(0.55); display: block; transition: transform 8s ease; }
-.feat-img:hover img { transform: scale(1.06); }
-.feat-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 50%, rgba(13,14,16,0.92) 100%); }
-.feat-text { background: var(--dark); padding: 80px 72px; display: flex; flex-direction: column; justify-content: center; }
-.feat-stats { display: flex; gap: 56px; margin: 36px 0; }
-.fstat-num { font-family: 'Noto Serif TC', serif; font-size: 3.4rem; font-weight: 900; color: var(--silver-lt); line-height: 1; }
-.fstat-suf { font-size: 1.5rem; color: var(--accent); }
-.fstat-label { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--muted); margin-top: 8px; }
-.feat-desc { font-size: 0.9rem; line-height: 2; color: rgba(232,237,242,0.5); max-width: 420px; }
-.feat-link { margin-top: 44px; }
+/* Gold corner accent */
+.svc-img-wrap::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.5s;
+}
+.svc-card:hover .svc-img-wrap::after { transform: scaleX(1); }
 
-/* ─── GALLERY ─── */
-.gallery { padding: 120px 80px; background: var(--bg); }
-.gallery-hd { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 52px; }
+.svc-body { padding: 40px 36px 48px; }
+.svc-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.72rem; letter-spacing: 0.5em; color: var(--gold);
+  margin-bottom: 16px;
+}
+.svc-name {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 1.2rem; font-weight: 600;
+  color: var(--cream); margin-bottom: 16px; letter-spacing: 0.04em;
+}
+.svc-desc { font-size: 0.8rem; line-height: 2; color: var(--muted); font-weight: 300; }
+
+/* ── FEATURE ── */
+.feature {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 640px;
+}
+.feat-img { position: relative; overflow: hidden; }
+.feat-img img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(0.55) saturate(0.35) sepia(0.15);
+  transition: transform 10s ease;
+}
+.feat-img:hover img { transform: scale(1.04); }
+.feat-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 60%, var(--surface) 100%);
+}
+
+.feat-text {
+  background: var(--surface);
+  padding: 96px 80px;
+  display: flex; flex-direction: column; justify-content: center;
+  border-left: 1px solid var(--border2);
+}
+.feat-stats { display: flex; gap: 64px; margin: 40px 0; }
+.fstat {}
+.fstat-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem; font-weight: 300; line-height: 1;
+  color: var(--gold-lt);
+}
+.fstat-n sup { font-size: 1.6rem; color: var(--gold); }
+.fstat-l { font-size: 0.62rem; letter-spacing: 0.28em; color: var(--muted); margin-top: 8px; }
+.feat-desc { font-size: 0.85rem; line-height: 2.1; color: var(--silver); font-weight: 300; max-width: 380px; }
+.feat-link { margin-top: 48px; }
+
+/* ── GALLERY ── */
+.gallery { padding: 140px 64px; background: var(--bg2); }
+.gallery-hd { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  gap: 2px;
 }
-.gi { overflow: hidden; position: relative; background: var(--mid); height: 260px; }
-.gi img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.72) saturate(0.5); transition: transform 0.6s ease, filter 0.4s; }
-.gi:hover img { transform: scale(1.08); filter: brightness(0.9) saturate(0.85); }
-.gi-ov { position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,14,16,0.72) 0%, transparent 55%); opacity: 0; transition: opacity 0.3s; }
-.gi:hover .gi-ov { opacity: 1; }
+.gi { overflow: hidden; position: relative; height: 240px; background: var(--surface2); }
+.gi img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(0.55) saturate(0.35) sepia(0.1);
+  transition: transform 0.7s ease, filter 0.5s;
+}
+.gi:hover img { transform: scale(1.08); filter: brightness(0.75) saturate(0.6); }
 
-/* ─── FLOW ─── */
-.flow { padding: 120px 80px; background: var(--mid); position: relative; overflow: hidden; }
-.flow::before {
+/* Gold frame on hover */
+.gi::before {
   content: '';
-  position: absolute; inset: 0;
-  background:
-    repeating-linear-gradient(0deg, transparent, transparent 47px, rgba(168,180,190,0.04) 47px, rgba(168,180,190,0.04) 48px),
-    repeating-linear-gradient(90deg, transparent, transparent 47px, rgba(168,180,190,0.04) 47px, rgba(168,180,190,0.04) 48px);
+  position: absolute; inset: 0; z-index: 1;
+  border: 1px solid transparent;
+  transition: border-color 0.4s;
+  pointer-events: none;
 }
-.flow-inner { position: relative; z-index: 1; }
-.flow-hd { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 80px; flex-wrap: wrap; gap: 28px; }
-.flow-steps { display: grid; grid-template-columns: repeat(4, 1fr); position: relative; gap: 0; }
-.flow-line { position: absolute; top: 31px; left: 88px; right: 88px; height: 1px; background: rgba(168,180,190,0.18); }
-.flow-step { padding: 0 24px 0 0; }
-.step-dot {
-  width: 64px; height: 64px; border-radius: 50%;
-  border: 1px solid var(--stone);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Noto Serif TC', serif; font-size: 1.2rem; font-weight: 900; color: var(--silver);
-  margin-bottom: 28px; position: relative; z-index: 1;
-  background: var(--mid);
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
-}
-.flow-step:hover .step-dot { background: var(--accent); border-color: var(--accent); color: #fff; }
-.step-title { font-family: 'Noto Serif TC', serif; font-size: 1.05rem; font-weight: 600; color: var(--silver-lt); margin-bottom: 14px; }
-.step-desc { font-size: 0.8rem; line-height: 1.95; color: rgba(232,237,242,0.42); }
+.gi:hover::before { border-color: rgba(201,169,110,0.4); }
 
-/* ─── CTA ─── */
-.cta-strip {
-  padding: 110px 80px;
-  background:
-    url('https://i.ibb.co/NgJWyFdr/S-28549162-0.jpg') center/cover fixed,
-    linear-gradient(135deg, var(--mid) 0%, var(--bg) 100%);
+/* ── FLOW ── */
+.flow { padding: 140px 64px; background: var(--bg); position: relative; overflow: hidden; }
+.flow::before {
+  content: 'PROCESS';
+  position: absolute; right: -40px; top: 50%;
+  transform: rotate(90deg) translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 8rem; font-weight: 300;
+  color: rgba(201,169,110,0.04);
+  letter-spacing: 0.3em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.flow-hd { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 96px; flex-wrap: wrap; gap: 32px; }
+
+.flow-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--border2);
+}
+.flow-step {
+  padding: 48px 48px 0 0;
   position: relative;
 }
-.cta-strip::before { content: ''; position: absolute; inset: 0; background: rgba(13,14,16,0.88); }
-.cta-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; text-align: center; }
-.cta-title { font-family: 'Noto Serif TC', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; color: var(--cream); line-height: 1.25; margin-bottom: 20px; }
-.cta-title em { color: var(--silver-lt); font-style: normal; }
-.cta-sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 52px; line-height: 2; }
-.cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-.btn-lg { padding: 17px 52px; font-size: 0.84rem; letter-spacing: 0.22em; text-decoration: none; border-radius: 2px; transition: transform 0.2s; display: inline-block; }
-.btn-lg:hover { transform: translateY(-3px); }
-.btn-acc { background: var(--stone); color: var(--cream); border: 1px solid rgba(168,180,190,0.3); }
-.btn-acc:hover { background: var(--accent); }
-.btn-out { border: 1px solid rgba(168,180,190,0.35); color: var(--silver); }
-.btn-out:hover { border-color: var(--silver-lt); color: var(--silver-lt); }
+.flow-step::before {
+  content: '';
+  position: absolute; top: -1px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.5s ease;
+}
+.flow-step:hover::before { width: 100%; }
 
-/* ─── CONTACT ─── */
-.contact { padding: 120px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 96px; background: var(--bg); }
-.contact-title { font-family: 'Noto Serif TC', serif; font-size: 2.1rem; font-weight: 900; color: var(--cream); margin-bottom: 20px; }
-.contact-desc { font-size: 0.88rem; line-height: 2; color: var(--muted); margin-bottom: 44px; }
-.c-row { display: flex; gap: 0; border-bottom: 1px solid rgba(168,180,190,0.1); padding: 18px 0; }
-.c-label { font-size: 0.73rem; letter-spacing: 0.24em; color: var(--accent); min-width: 88px; flex-shrink: 0; padding-top: 2px; }
-.c-val { font-size: 0.88rem; color: rgba(232,237,242,0.62); line-height: 1.75; }
-.c-val a { color: var(--silver-lt); text-decoration: none; }
-.c-val a:hover { text-decoration: underline; }
-.form-wrap { display: flex; flex-direction: column; gap: 14px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem; font-weight: 300; line-height: 1;
+  color: rgba(201,169,110,0.15);
+  margin-bottom: 24px;
+  transition: color 0.4s;
+}
+.flow-step:hover .step-num { color: var(--gold); }
+.step-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 1.05rem; font-weight: 600;
+  color: var(--cream); margin-bottom: 16px; letter-spacing: 0.04em;
+}
+.step-desc { font-size: 0.78rem; line-height: 2; color: var(--muted); font-weight: 300; max-width: 220px; }
+
+/* ── CTA STRIP ── */
+.cta-strip {
+  padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 480px;
+  position: relative;
+}
+.cta-img { position: relative; overflow: hidden; }
+.cta-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.45) saturate(0.3); }
+.cta-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 50%, var(--surface) 100%);
+}
+.cta-text {
+  background: var(--surface);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 80px 80px 72px;
+  border-left: 1px solid var(--border2);
+}
+.cta-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  font-weight: 900; color: var(--cream); line-height: 1.3; margin-bottom: 20px;
+}
+.cta-title em { font-style: normal; color: var(--gold-lt); }
+.cta-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 48px; line-height: 2; font-weight: 300; }
+.cta-btns { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+.btn-out {
+  display: inline-block;
+  padding: 13px 36px;
+  border: 1px solid var(--gold-dk);
+  color: var(--gold-lt); font-size: 0.7rem; letter-spacing: 0.24em;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+}
+.btn-out:hover { background: var(--gold-dk); color: var(--cream); }
+
+/* ── CONTACT ── */
+.contact {
+  padding: 140px 64px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 100px; background: var(--bg);
+}
+.contact-eyebrow { margin-bottom: 32px; }
+.contact-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 2rem; font-weight: 900; color: var(--cream);
+  margin-bottom: 20px; letter-spacing: 0.02em;
+}
+.contact-desc { font-size: 0.82rem; line-height: 2.1; color: var(--muted); margin-bottom: 48px; font-weight: 300; }
+
+.c-row {
+  display: flex; gap: 0; padding: 18px 0;
+  border-bottom: 1px solid var(--border2);
+}
+.c-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.65rem; letter-spacing: 0.4em; color: var(--gold);
+  min-width: 80px; flex-shrink: 0; padding-top: 3px;
+  text-transform: uppercase;
+}
+.c-val { font-size: 0.83rem; color: var(--silver); line-height: 1.8; font-weight: 300; }
+.c-val a { color: var(--cream); text-decoration: none; transition: color 0.2s; }
+.c-val a:hover { color: var(--gold-lt); }
+
+/* Form */
+.form-wrap { display: flex; flex-direction: column; gap: 12px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .field {
-  background: rgba(255,255,255,0.035);
-  border: 1px solid rgba(168,180,190,0.14);
-  padding: 15px 18px; font-size: 0.86rem;
-  color: var(--cream); font-family: 'Noto Sans TC', Arial, sans-serif;
-  outline: none; border-radius: 2px; width: 100%;
-  transition: border-color 0.2s;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(201,169,110,0.2);
+  padding: 14px 0; font-size: 0.82rem;
+  color: var(--cream); font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 300;
+  outline: none; width: 100%;
+  transition: border-color 0.3s;
 }
-.field::placeholder { color: rgba(232,237,242,0.24); }
-.field:focus { border-color: var(--silver); background: rgba(168,180,190,0.05); }
-textarea.field { min-height: 136px; resize: vertical; }
+.field::placeholder { color: var(--muted); }
+.field:focus { border-color: var(--gold); }
+textarea.field { min-height: 120px; resize: none; margin-top: 8px; }
 .form-submit {
-  padding: 16px; background: var(--stone); color: var(--cream);
-  border: 1px solid rgba(168,180,190,0.25); cursor: pointer; border-radius: 2px;
-  font-size: 0.84rem; font-family: 'Noto Sans TC', Arial, sans-serif;
-  letter-spacing: 0.22em; transition: background 0.2s, transform 0.2s;
+  margin-top: 8px;
+  padding: 15px;
+  background: transparent;
+  border: 1px solid var(--gold-dk);
+  color: var(--gold);
+  font-size: 0.72rem; font-family: 'Noto Sans TC', sans-serif;
+  letter-spacing: 0.3em; cursor: pointer;
+  transition: background 0.3s, color 0.3s;
 }
-.form-submit:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
-.form-submit:disabled { background: var(--muted); opacity: 0.6; cursor: not-allowed; transform: none; }
+.form-submit:hover { background: var(--gold); color: var(--bg); }
+.form-submit:disabled { opacity: 0.4; cursor: not-allowed; }
 
-/* ─── FOOTER ─── */
+/* ── FOOTER ── */
 footer {
-  padding: 48px 80px; background: #090A0C;
-  border-top: 1px solid rgba(168,180,190,0.07);
+  padding: 48px 64px;
+  background: var(--bg2);
+  border-top: 1px solid var(--border2);
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
 }
-.footer-brand { font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 1rem; color: var(--silver); }
-.footer-links { display: flex; gap: 32px; flex-wrap: wrap; }
-.footer-links a { font-size: 0.75rem; letter-spacing: 0.16em; color: rgba(232,237,242,0.28); text-decoration: none; transition: color 0.2s; }
-.footer-links a:hover { color: var(--silver-lt); }
-.footer-copy { font-size: 0.72rem; color: rgba(232,237,242,0.18); }
+.footer-brand {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 0.9rem; font-weight: 600; color: var(--silver);
+  letter-spacing: 0.12em;
+}
+.footer-links { display: flex; gap: 36px; }
+.footer-links a { font-size: 0.65rem; letter-spacing: 0.22em; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--gold); }
+.footer-copy { font-size: 0.6rem; letter-spacing: 0.16em; color: rgba(240,237,232,0.15); }
 
-/* ─── MODAL ─── */
+/* ── MODAL ── */
 .modal-overlay {
-  position: fixed; inset: 0; background: rgba(9,10,12,0.78);
-  backdrop-filter: blur(8px); z-index: 999;
+  position: fixed; inset: 0; background: rgba(8,8,8,0.9);
+  backdrop-filter: blur(12px); z-index: 999;
   display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+  opacity: 0; pointer-events: none; transition: opacity 0.4s;
 }
 .modal-overlay.active { opacity: 1; pointer-events: auto; }
 .modal-box {
-  background: var(--dark); border: 1px solid rgba(168,180,190,0.2);
-  padding: 40px; max-width: 420px; width: 90%; text-align: center;
-  border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-  transform: scale(0.9); transition: transform 0.3s ease;
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 56px 48px; max-width: 400px; width: 90%; text-align: center;
+  transform: translateY(16px); transition: transform 0.4s;
 }
-.modal-overlay.active .modal-box { transform: scale(1); }
-.modal-icon { width: 48px; height: 48px; margin: 0 auto 20px; stroke: var(--silver); }
-.modal-title { font-family: 'Noto Serif TC', serif; font-size: 1.4rem; color: var(--cream); margin-bottom: 12px; font-weight: 600; }
-.modal-msg { font-size: 0.88rem; color: var(--muted); line-height: 1.8; margin-bottom: 28px; }
+.modal-overlay.active .modal-box { transform: translateY(0); }
+.modal-gold-line { width: 40px; height: 1px; background: var(--gold); margin: 0 auto 28px; }
+.modal-title { font-family: 'Noto Serif TC', serif; font-size: 1.3rem; color: var(--cream); margin-bottom: 14px; font-weight: 600; }
+.modal-msg { font-size: 0.82rem; color: var(--muted); line-height: 1.9; margin-bottom: 36px; font-weight: 300; }
 .modal-btn {
-  padding: 12px 36px; background: var(--stone); color: var(--cream); border: 1px solid rgba(168,180,190,0.25);
-  font-size: 0.82rem; letter-spacing: 0.15em; border-radius: 2px; cursor: pointer; transition: background 0.2s;
+  padding: 12px 40px; background: transparent; color: var(--gold);
+  border: 1px solid var(--gold-dk); font-size: 0.7rem; letter-spacing: 0.24em;
+  cursor: pointer; transition: background 0.3s, color 0.3s;
+  font-family: 'Noto Sans TC', sans-serif;
 }
-.modal-btn:hover { background: var(--accent); }
+.modal-btn:hover { background: var(--gold); color: var(--bg); }
 
-/* ─── SCROLL REVEAL ─── */
-.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; }
 .reveal.in { opacity: 1; transform: none; }
+.reveal-l { opacity: 0; transform: translateX(-24px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.reveal-l.in { opacity: 1; transform: none; }
 
-/* ─── RESPONSIVE ─── */
+/* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
-  .hero-content { padding: 0 48px 80px; }
-  .hero-stats { right: 48px; bottom: 80px; gap: 32px; }
-  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+  nav { padding: 0 32px; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { height: 50vh; }
+  .hero-right::before { background: linear-gradient(to bottom, var(--bg) 0%, transparent 40%); }
+  .hero-right::after { display: none; }
+  .hero-left { padding: 120px 40px 72px; }
+  .hero-stats { right: 40px; bottom: 40px; }
+  .services, .gallery, .flow, .contact { padding: 96px 40px; }
+  .feat-text { padding: 72px 48px; }
+  .cta-text { padding: 72px 48px; }
 }
 @media (max-width: 768px) {
-  nav { padding: 0 24px; }
   .nav-links, .nav-cta { display: none; }
-  .hero-content { padding: 0 24px 80px; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-right { height: 45vh; }
+  .hero-left { padding: 100px 24px 64px; }
   .hero-stats { display: none; }
   .services, .gallery, .flow, .contact { padding: 80px 24px; }
   .svc-grid { grid-template-columns: 1fr; }
   .feature { grid-template-columns: 1fr; }
-  .feat-img { height: 280px; }
+  .feat-img { height: 300px; }
   .feat-text { padding: 56px 28px; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .gi { height: 180px; }
-  .flow-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
-  .flow-line { display: none; }
-  .flow-hd { flex-direction: column; align-items: flex-start; }
-  .cta-strip { padding: 80px 24px; }
-  .contact { grid-template-columns: 1fr; gap: 52px; padding: 80px 24px; }
+  .gi { height: 200px; }
+  .flow-steps { grid-template-columns: 1fr 1fr; }
+  .flow-step { padding: 40px 24px 0 0; }
+  .cta-strip { grid-template-columns: 1fr; }
+  .cta-img { height: 280px; }
+  .cta-img::after { background: linear-gradient(to bottom, transparent 40%, var(--surface) 100%); }
+  .cta-text { padding: 56px 28px; border-left: none; border-top: 1px solid var(--border2); }
+  .contact { grid-template-columns: 1fr; gap: 64px; }
   .form-row { grid-template-columns: 1fr; }
-  footer { padding: 36px 24px; flex-direction: column; text-align: center; gap: 16px; }
+  footer { padding: 36px 24px; flex-direction: column; text-align: center; gap: 20px; }
 }
 @media (max-width: 480px) {
   .gallery-grid { grid-template-columns: 1fr; }
+  .flow-steps { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -334,12 +570,12 @@ footer {
 
 <nav>
   <a href="#" class="logo-wrap">
-    <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-      <rect width="30" height="30" rx="2" fill="#A8B4BE" fill-opacity="0.1"/>
-      <path d="M7 23V10.5L15 7l8 3.5V23" stroke="#A8B4BE" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M11 23v-6.5h8V23" stroke="#A8B4BE" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="15" cy="10.5" r="1.5" fill="#7A9BAE"/>
-    </svg>
+    <div class="logo-icon">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M2 12V5.5L7 3l5 2.5V12" stroke="#C9A96E" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 12V8.5h4V12" stroke="#C9A96E" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
     <span class="logo-text">極東數位木作工程</span>
   </a>
   <ul class="nav-links">
@@ -351,25 +587,31 @@ footer {
   <a href="#contact" class="nav-cta">免費估價</a>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-badge"><span class="badge-dot"></span>極東數位木作雲端中心</div>
-    <h1 class="hero-h1">極東<br><em>數位木作工程</em><br>最佳幫手</h1>
-    <p class="hero-desc">透過雲端 platform 一站式完成拆圖、製圖到骨架切割，20 年 CNC 經驗，協助全台木工團隊實現各式曲面與特殊造型製作。</p>
+  <div class="hero-left">
+    <div class="hero-serial">極東數位木作雲端中心</div>
+    <h1 class="hero-h1">
+      <small>二十年工藝傳承</small>
+      極東<em>數位木作</em>工程
+    </h1>
+    <p class="hero-desc">透過雲端 platform 一站式完成拆圖、製圖到骨架切割，協助全台木工團隊實現各式曲面與特殊造型製作。</p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-prim">立即諮詢估價</a>
-      <a href="https://drive.google.com/drive/u/2/folders/1AJZHjZQTYRXQD5nKeLKPcEDHFdTSfn3w" class="btn-ghost" target="_blank">瀏覽更多作品 →</a>
+      <a href="#contact" class="btn-gold">立即諮詢估價</a>
+      <a href="https://drive.google.com/drive/u/2/folders/1AJZHjZQTYRXQD5nKeLKPcEDHFdTSfn3w" class="btn-line" target="_blank">瀏覽作品集 →</a>
     </div>
   </div>
-  <div class="hero-stats">
-    <div>
-      <div class="stat-num">20<span class="stat-suf">年</span></div>
-      <div class="stat-label">數位木作經驗</div>
-    </div>
-    <div>
-      <div class="stat-num">75<span class="stat-suf">%</span></div>
-      <div class="stat-label">節省製作時間</div>
+  <div class="hero-right">
+    <img src="https://i.ibb.co/zVWkCsP6/S-28549161-0.jpg" alt="極東數位木作工程">
+    <div class="hero-stats">
+      <div class="hstat">
+        <div class="hstat-n">20<sup>年</sup></div>
+        <div class="hstat-l">數位木作經驗</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-n">75<sup>%</sup></div>
+        <div class="hstat-l">節省製作時間</div>
+      </div>
     </div>
   </div>
 </section>
@@ -380,6 +622,7 @@ footer {
   </div>
 </div>
 
+<!-- SERVICES -->
 <section class="services" id="services">
   <div class="svc-intro reveal">
     <div class="eyebrow">核心服務</div>
@@ -392,173 +635,173 @@ footer {
         <img src="https://i.ibb.co/Q7kZ4HVk/S-28549157-0.jpg" alt="代客拆圖 · 製圖" loading="lazy">
       </div>
       <div class="svc-body">
-        <div class="svc-num">SERVICE 01</div>
-        <div class="svc-name">代客拆圖 · 製圖</div>
+        <div class="svc-num">I &nbsp;·&nbsp; 代客拆圖製圖</div>
+        <div class="svc-name">圖面製作</div>
         <p class="svc-desc">專業製圖團隊提供圖面製作、3D 模型製圖及拆圖，將您的創意完整轉化為可加工的精準圖檔。</p>
       </div>
-      <div class="svc-bar"></div>
     </div>
-    <div class="svc-card reveal" style="transition-delay: 0.1s">
+    <div class="svc-card reveal" style="transition-delay:0.12s">
       <div class="svc-img-wrap">
         <img src="https://i.ibb.co/d0w0L9yJ/S-28549158-0.jpg" alt="骨架設計 · 切割" loading="lazy">
       </div>
       <div class="svc-body">
-        <div class="svc-num">SERVICE 02</div>
-        <div class="svc-name">骨架設計 · 切割</div>
+        <div class="svc-num">II &nbsp;·&nbsp; 骨架設計切割</div>
+        <div class="svc-name">精準加工</div>
         <p class="svc-desc">依照圖面規格進行 CNC 骨架切割，刀具不留黑邊，保留原木色澤，有效協助各式曲面造型製作。</p>
       </div>
-      <div class="svc-bar"></div>
     </div>
-    <div class="svc-card reveal" style="transition-delay: 0.2s">
+    <div class="svc-card reveal" style="transition-delay:0.24s">
       <div class="svc-img-wrap">
         <img src="https://i.ibb.co/G452j07d/S-28549159-0.jpg" alt="雲端接案 · 快速交貨" loading="lazy">
       </div>
       <div class="svc-body">
-        <div class="svc-num">SERVICE 03</div>
-        <div class="svc-name">雲端接案 · 快速交貨</div>
+        <div class="svc-num">III &nbsp;·&nbsp; 雲端接案交貨</div>
+        <div class="svc-name">快速交付</div>
         <p class="svc-desc">透過雲端中心線上溝通、即時報價，多條產線同時加工，全台配送到廠，省去 75% 製作時間。</p>
       </div>
-      <div class="svc-bar"></div>
     </div>
   </div>
 </section>
 
+<!-- FEATURE -->
 <section class="feature">
   <div class="feat-img">
-    <img src="https://i.ibb.co/nNfYYWRh/S-28549160-0.jpg" alt="CNC精準切割不留黑邊" loading="lazy">
+    <img src="https://i.ibb.co/nNfYYWRh/S-28549160-0.jpg" alt="CNC精準切割" loading="lazy">
   </div>
-  <div class="feat-text reveal">
+  <div class="feat-text reveal-l">
     <div class="eyebrow">技術優勢</div>
-    <h2 class="sec-title" style="font-size: clamp(1.7rem, 2.8vw, 2.4rem)">精準切割<br><span>不留黑邊</span></h2>
+    <h2 class="sec-title" style="font-size:clamp(1.8rem,2.8vw,2.5rem)">精準切割<br><span>不留黑邊</span></h2>
     <div class="feat-stats">
-      <div>
-        <div class="fstat-num">75<span class="fstat-suf">%</span></div>
-        <div class="fstat-label">節省製作時間</div>
+      <div class="fstat">
+        <div class="fstat-n">75<sup>%</sup></div>
+        <div class="fstat-l">節省製作時間</div>
       </div>
-      <div>
-        <div class="fstat-num">20<span class="fstat-suf">年</span></div>
-        <div class="fstat-label">數位木作經驗</div>
+      <div class="fstat">
+        <div class="fstat-n">20<sup>年</sup></div>
+        <div class="fstat-l">數位木作經驗</div>
       </div>
     </div>
     <p class="feat-desc">不論是牆上的地圖造型、複雜曲面天花，極東 CNC 刀具切割技術不讓切面出現燒過的黑邊，保留原木顏色，每一件作品都細膩到位。</p>
     <div class="feat-link">
-      <a href="#contact" class="btn-prim">立即洽詢</a>
+      <a href="#contact" class="btn-gold">立即洽詢</a>
     </div>
   </div>
 </section>
 
+<!-- GALLERY -->
 <section class="gallery" id="gallery">
   <div class="gallery-hd reveal">
     <div>
       <div class="eyebrow">作品案例</div>
       <h2 class="sec-title">實際<span>完工案例</span></h2>
     </div>
-    <a href="#contact" class="btn-ghost">查看更多 →</a>
+    <a href="https://drive.google.com/drive/u/2/folders/1AJZHjZQTYRXQD5nKeLKPcEDHFdTSfn3w" class="btn-line" target="_blank">完整作品集 →</a>
   </div>
   <div class="gallery-grid">
-    <div class="gi"><img src="https://i.ibb.co/Q7kZ4HVk/S-28549157-0.jpg" alt="木作案例 1" loading="lazy"><div class="gi-ov"></div></div>
-    <div class="gi"><img src="https://i.ibb.co/d0w0L9yJ/S-28549158-0.jpg" alt="木作案例 2" loading="lazy"><div class="gi-ov"></div></div>
-    <div class="gi"><img src="https://i.ibb.co/G452j07d/S-28549159-0.jpg" alt="木作案例 3" loading="lazy"><div class="gi-ov"></div></div>
-    <div class="gi"><img src="https://i.ibb.co/nNfYYWRh/S-28549160-0.jpg" alt="木作案例 4" loading="lazy"><div class="gi-ov"></div></div>
-    <div class="gi"><img src="https://i.ibb.co/zVWkCsP6/S-28549161-0.jpg" alt="木作案例 5" loading="lazy"><div class="gi-ov"></div></div>
-    <div class="gi"><img src="https://i.ibb.co/NgJWyFdr/S-28549162-0.jpg" alt="木作案例 6" loading="lazy"><div class="gi-ov"></div></div>
-    <div class="gi"><img src="https://i.ibb.co/qMTNsZWX/S-28549163-0.jpg" alt="木作案例 7" loading="lazy"><div class="gi-ov"></div></div>
-    <div class="gi"><img src="https://i.ibb.co/cSGtmXqY/S-28549164-0.jpg" alt="木作案例 8" loading="lazy"><div class="gi-ov"></div></div>
-    <div class="gi"><img src="https://i.ibb.co/prhKXRf5/S-28549165-0.jpg" alt="木作案例 9" loading="lazy"><div class="gi-ov"></div></div>
-    <div class="gi"><img src="https://i.ibb.co/GwSHbdt/S-28549166-0.jpg" alt="木作案例 10" loading="lazy"><div class="gi-ov"></div></div>
-    <div class="gi"><img src="https://i.ibb.co/nMYFPr7Y/S-28549168-0.jpg" alt="木作案例 11" loading="lazy"><div class="gi-ov"></div></div>
-    <div class="gi"><img src="https://i.ibb.co/xSX8RRG1/S-28549169-0.jpg" alt="木作案例 12" loading="lazy"><div class="gi-ov"></div></div>
-    <div class="gi"><img src="https://i.ibb.co/NdzZNcLc/S-28549170-0.jpg" alt="木作案例 13" loading="lazy"><div class="gi-ov"></div></div>
-    <div class="gi"><img src="https://i.ibb.co/wFJsHqhT/S-28549171-0.jpg" alt="木作案例 14" loading="lazy"><div class="gi-ov"></div></div>
-    <div class="gi"><img src="https://i.ibb.co/DffYT89N/S-28549172-0.jpg" alt="木作案例 15" loading="lazy"><div class="gi-ov"></div></div>
-    <div class="gi"><img src="https://i.ibb.co/dJ63SQ6D/S-28549173-0.jpg" alt="木作案例 16" loading="lazy"><div class="gi-ov"></div></div>
+    <div class="gi"><img src="https://i.ibb.co/Q7kZ4HVk/S-28549157-0.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="https://i.ibb.co/d0w0L9yJ/S-28549158-0.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="https://i.ibb.co/G452j07d/S-28549159-0.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="https://i.ibb.co/nNfYYWRh/S-28549160-0.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="https://i.ibb.co/zVWkCsP6/S-28549161-0.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="https://i.ibb.co/NgJWyFdr/S-28549162-0.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="https://i.ibb.co/qMTNsZWX/S-28549163-0.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="https://i.ibb.co/cSGtmXqY/S-28549164-0.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="https://i.ibb.co/prhKXRf5/S-28549165-0.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="https://i.ibb.co/GwSHbdt/S-28549166-0.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="https://i.ibb.co/nMYFPr7Y/S-28549168-0.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="https://i.ibb.co/xSX8RRG1/S-28549169-0.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="https://i.ibb.co/NdzZNcLc/S-28549170-0.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="https://i.ibb.co/wFJsHqhT/S-28549171-0.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="https://i.ibb.co/DffYT89N/S-28549172-0.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="https://i.ibb.co/dJ63SQ6D/S-28549173-0.jpg" alt="" loading="lazy"></div>
   </div>
 </section>
 
+<!-- FLOW -->
 <section class="flow" id="flow">
-  <div class="flow-inner">
-    <div class="flow-hd reveal">
-      <div>
-        <div class="eyebrow">合作流程</div>
-        <h2 class="sec-title">四步驟<br><span>輕鬆完成</span>專案</h2>
-      </div>
-      <a href="https://line.me/ti/p/QdtaXIETEr" target="_blank" class="btn-prim">加 LINE 開始合作</a>
+  <div class="flow-hd reveal">
+    <div>
+      <div class="eyebrow">合作流程</div>
+      <h2 class="sec-title">四步驟<br><span>輕鬆完成</span>專案</h2>
     </div>
-    <div class="flow-steps reveal">
-      <div class="flow-line"></div>
-      <div class="flow-step">
-        <div class="step-dot">01</div>
-        <div class="step-title">雲端諮詢</div>
-        <p class="step-desc">傳送您的想法或設計圖面，業務專員即時討論並提供估價，無需親赴工廠。</p>
-      </div>
-      <div class="flow-step">
-        <div class="step-dot">02</div>
-        <div class="step-title">圖面製作</div>
-        <p class="step-desc">專業製圖團隊提供拆圖、3D 模型建模、CNC 排版等完整圖面服務。</p>
-      </div>
-      <div class="flow-step">
-        <div class="step-dot">03</div>
-        <div class="step-title">CNC 加工</div>
-        <p class="step-desc">圖檔確認後立即上機，多組 CNC 機台同時運作，精準切割不留黑邊。</p>
-      </div>
-      <div class="flow-step">
-        <div class="step-dot">04</div>
-        <div class="step-title">快速交貨</div>
-        <p class="step-desc">切割完成後配送全台，師傅直接組裝，大幅節省整體工期。</p>
-      </div>
+    <a href="https://line.me/ti/p/QdtaXIETEr" target="_blank" class="btn-gold">加 LINE 開始合作</a>
+  </div>
+  <div class="flow-steps reveal">
+    <div class="flow-step">
+      <div class="step-num">01</div>
+      <div class="step-title">雲端諮詢</div>
+      <p class="step-desc">傳送您的想法或設計圖面，業務專員即時討論並提供估價，無需親赴工廠。</p>
+    </div>
+    <div class="flow-step">
+      <div class="step-num">02</div>
+      <div class="step-title">圖面製作</div>
+      <p class="step-desc">專業製圖團隊提供拆圖、3D 模型建模、CNC 排版等完整圖面服務。</p>
+    </div>
+    <div class="flow-step">
+      <div class="step-num">03</div>
+      <div class="step-title">CNC 加工</div>
+      <p class="step-desc">圖檔確認後立即上機，多組 CNC 機台同時運作，精準切割不留黑邊。</p>
+    </div>
+    <div class="flow-step">
+      <div class="step-num">04</div>
+      <div class="step-title">快速交貨</div>
+      <p class="step-desc">切割完成後配送全台，師傅直接組裝，大幅節省整體工期。</p>
     </div>
   </div>
 </section>
 
+<!-- CTA -->
 <section class="cta-strip">
-  <div class="cta-inner reveal">
+  <div class="cta-img">
+    <img src="https://i.ibb.co/NgJWyFdr/S-28549162-0.jpg" alt="" loading="lazy">
+  </div>
+  <div class="cta-text reveal-l">
+    <div class="eyebrow" style="margin-bottom:32px">立即合作</div>
     <h2 class="cta-title">還在用人工打板嗎？<br>快來試試<em>數位木作</em></h2>
     <p class="cta-sub">郭懋鵬 × 極東數位木作工程<br>快速交貨 ｜ 品質保證 ｜ 價格實惠</p>
     <div class="cta-btns">
-      <a href="#contact" class="btn-lg btn-acc">立即免費估價</a>
-      <a href="https://line.me/ti/p/QdtaXIETEr" target="_blank" class="btn-lg btn-out">加 LINE 聊聊</a>
+      <a href="#contact" class="btn-gold">立即免費估價</a>
+      <a href="https://line.me/ti/p/QdtaXIETEr" target="_blank" class="btn-out">加 LINE 聊聊</a>
     </div>
   </div>
 </section>
 
+<!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="reveal">
-    <div class="eyebrow">聯絡我們</div>
+    <div class="contact-eyebrow">
+      <div class="eyebrow">聯絡我們</div>
+    </div>
     <h2 class="contact-title">開始合作</h2>
     <p class="contact-desc">歡迎全台各地木工師傅、室內設計師及工程團隊洽詢，線上即時報價，快速安排製程。</p>
     <div>
       <div class="c-row"><span class="c-label">聯絡人</span><span class="c-val">郭懋鵬</span></div>
       <div class="c-row"><span class="c-label">品牌</span><span class="c-val">極東數位木作工程</span></div>
       <div class="c-row"><span class="c-label">手機</span><span class="c-val"><a href="tel:0908-236-090">0908-236-090</a></span></div>
-      <div class="c-row"><span class="c-label">LINE ID</span><span class="c-val"><a href="https://line.me/ti/p/QdtaXIETEr" target="_blank">0908236090</a></span></div>
+      <div class="c-row"><span class="c-label">LINE</span><span class="c-val"><a href="https://line.me/ti/p/QdtaXIETEr" target="_blank">0908236090</a></span></div>
       <div class="c-row"><span class="c-label">電話</span><span class="c-val"><a href="tel:0226683290">02-2668-3290</a></span></div>
       <div class="c-row"><span class="c-label">廠址</span><span class="c-val"><a href="https://maps.app.goo.gl/QTj6YgSPETdEgq3y9" target="_blank">新北市樹林區西圳街一段116巷8號</a></span></div>
     </div>
   </div>
-  <div class="reveal" style="transition-delay: 0.15s">
-    <div class="form-wrap">
-      <form id="woodworkingForm" style="width: 100%; display: flex; flex-direction: column; gap: 14px;">
-        <div class="form-row">
-          <input class="field" type="text" name="name" placeholder="您的姓名 *" required>
-          <input class="field" type="tel" name="phone" placeholder="聯絡電話 *" required>
-        </div>
-        <input class="field" type="email" name="email" placeholder="電子郵件">
-        <input class="field" type="text" name="line_id" placeholder="LINE ID（方便聯繫）">
-        <textarea class="field" name="requirement" placeholder="描述您的需求（材料、尺寸、造型等）" required></textarea>
-        <button type="submit" id="submitBtn" class="form-submit">送出諮詢</button>
-      </form>
-    </div>
+  <div class="reveal" style="transition-delay:0.15s">
+    <form id="woodworkingForm" class="form-wrap">
+      <div class="form-row">
+        <input class="field" type="text" name="name" placeholder="您的姓名 *" required>
+        <input class="field" type="tel" name="phone" placeholder="聯絡電話 *" required>
+      </div>
+      <input class="field" type="email" name="email" placeholder="電子郵件">
+      <input class="field" type="text" name="line_id" placeholder="LINE ID（方便聯繫）">
+      <textarea class="field" name="requirement" placeholder="描述您的需求（材料、尺寸、造型等）" required></textarea>
+      <button type="submit" id="submitBtn" class="form-submit">送出諮詢</button>
+    </form>
   </div>
 </section>
 
 <div id="successModal" class="modal-overlay">
   <div class="modal-box">
-    <svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-      <polyline points="22 4 12 14.01 9 11.01"/>
-    </svg>
-    <div class="modal-title">資料送出成功！</div>
-    <div class="modal-msg">感謝您的洽詢，我們已收到您的木作需求。專員將會盡快與您聯絡，您也可以點擊上方「加 LINE 聊聊」加速討論！</div>
+    <div class="modal-gold-line"></div>
+    <div class="modal-title">資料送出成功</div>
+    <div class="modal-msg">感謝您的洽詢，我們已收到您的木作需求。專員將會盡快與您聯絡，您也可以加 LINE 加速討論。</div>
     <button type="button" id="modalCloseBtn" class="modal-btn">確認</button>
   </div>
 </div>
@@ -575,16 +818,14 @@ footer {
 </footer>
 
 <script>
-// Scroll reveal — 滾動動態
-(function() {
+(function(){
   const obs = new IntersectionObserver(
-    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
-    { threshold: 0.08 }
+    entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); }),
+    { threshold: 0.07 }
   );
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  document.querySelectorAll('.reveal, .reveal-l').forEach(el => obs.observe(el));
 })();
 
-// 表單非同步處理與彈出視窗 JS
 const form = document.getElementById('woodworkingForm');
 const submitBtn = document.getElementById('submitBtn');
 const modal = document.getElementById('successModal');
@@ -592,35 +833,26 @@ const modalCloseBtn = document.getElementById('modalCloseBtn');
 const scriptURL = 'https://script.google.com/macros/s/AKfycbx_RMaKFrAV6pZNZfHRUU8kca1_oZ_HlD0riPQO1RSxJ2gX11ZaM4eIpVF9RRXz_IYm/exec';
 
 form.addEventListener('submit', e => {
-  e.preventDefault(); 
-  
+  e.preventDefault();
   submitBtn.disabled = true;
-  submitBtn.innerText = '傳送中...';
-
-  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-    .then(response => {
+  submitBtn.textContent = '傳送中⋯';
+  fetch(scriptURL, { method:'POST', body: new FormData(form) })
+    .then(() => {
       submitBtn.disabled = false;
-      submitBtn.innerText = '送出諮詢';
+      submitBtn.textContent = '送出諮詢';
       modal.classList.add('active');
-      form.reset(); 
+      form.reset();
     })
-    .catch(error => {
-      console.error('Error!', error.message);
-      alert('傳送失敗，請稍後再試，或直接加 LINE 聯繫我們，謝謝！');
+    .catch(err => {
+      console.error(err);
+      alert('傳送失敗，請直接加 LINE 聯繫，謝謝！');
       submitBtn.disabled = false;
-      submitBtn.innerText = '送出諮詢';
+      submitBtn.textContent = '送出諮詢';
     });
 });
 
-modalCloseBtn.addEventListener('click', () => {
-  modal.classList.remove('active');
-});
-
-modal.addEventListener('click', (e) => {
-  if (e.target === modal) {
-    modal.classList.remove('active');
-  }
-});
+modalCloseBtn.addEventListener('click', () => modal.classList.remove('active'));
+modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('active'); });
 </script>
 </body>
 </html>
